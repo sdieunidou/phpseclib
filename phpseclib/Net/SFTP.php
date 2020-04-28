@@ -2255,6 +2255,11 @@ class SFTP extends SSH2
                         } else {
                             fputs($fp, $temp);
                         }
+                        
+                        if (is_callable($progressCallback)) {
+                            call_user_func($progressCallback, $temp);
+                        }
+                        
                         $temp = null;
                         break;
                     case NET_SFTP_STATUS:
